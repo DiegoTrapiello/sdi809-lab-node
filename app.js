@@ -1,6 +1,8 @@
 // Módulos
 var express = require('express');
 var app = express();
+var fs = require('fs');
+var https = require('https');
 
 
 var expressSession = require('express-session');
