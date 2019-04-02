@@ -102,3 +102,7 @@ require("./routes/rcanciones.js")(app, swig, gestorBD);
 app.listen(app.get('port'), function () {
     console.log("Servidor activo");
 })
+
+app.get('/', function (req, res) {
+    res.redirect('/tienda');
+})
