@@ -9,5 +9,11 @@
     "express-session": "^1.15.6",
     "mongodb": "^2.2.33",
     "swig": "^1.4.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  },
+  "scripts": {
+    "serve": "nodemon server.js"
   }
 }

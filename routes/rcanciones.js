@@ -76,13 +76,16 @@ module.exports = function (app, swig, gestorBD) {
 
         var canciones = [{
             "nombre": "Blank space",
-            "precio": "1.2"
+            "precio": "1.2",
+            "autor": "Raul Garcia"
         }, {
             "nombre": "See you again",
-            "precio": "1.3"
+            "precio": "1.3",
+            "autor": "Raul Garcia"
         }, {
             "nombre": "Uptown Funk",
-            "precio": "1.1"
+            "precio": "1.1",
+            "autor": "Raul Garcia"
         }];
 
         var respuesta = swig.renderFile('views/btienda.html', {
@@ -163,7 +166,8 @@ module.exports = function (app, swig, gestorBD) {
         var cancion = {
             nombre: req.body.nombre,
             genero: req.body.genero,
-            precio: req.body.precio
+            precio: req.body.precio,
+            autor: req.body.autor
         }
         gestorBD.modificarCancion(criterio, cancion, function (result) {
             if (result == null) {
@@ -209,6 +213,17 @@ module.exports = function (app, swig, gestorBD) {
             callback(true); // FIN
         }
     };
+
+    app.get('/cancion/eliminar/:id', function (req, res) {
+        var criterio = {"_id": gestorBD.mongo.ObjectID(req.params.id)};
+        gestorBD.eliminarCancion(criterio, function (canciones) {
+            if (canciones == null) {
+                res.send(respuesta);
+            } else {
+                res.redirect("/publicaciones");
+            }
+        });
+    })
 
 }
 
