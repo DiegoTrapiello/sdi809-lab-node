@@ -3,7 +3,10 @@ var express = require('express');
 var app = express();
 
 
-app.use(function(req, res, next) {
+var rest = require('request');
+app.set('rest', rest);
+
+app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Credentials", "true");
     res.header("Access-Control-Allow-Methods", "POST, GET, DELETE, UPDATE, PUT");
@@ -11,6 +14,9 @@ app.use(function(req, res, next) {
     // Debemos especificar todas las headers que se aceptan. Content-Type , token
     next();
 });
+
+
+
 
 var jwt = require('jsonwebtoken');
 app.set('jwt', jwt);
